@@ -49,6 +49,20 @@ export function AuthProvider({ children }) {
     if (error) throw error
   }
 
+  const signUp = async (email, password, name) => {
+    const { data, error } = await supabase.auth.signUp({ 
+      email, 
+      password,
+      options: {
+        data: {
+        name
+      }
+    }
+  })
+    if (error) throw error
+    return data
+  }
+
   const signOut = async () => {
     const { error } = await supabase.auth.signOut()
     if (error) throw error
@@ -57,7 +71,7 @@ export function AuthProvider({ children }) {
   const isAdmin = profile?.role === 'administrador'
 
   return (
-    <AuthContext.Provider value={{ user, profile, loading, signIn, signOut, isAdmin }}>
+    <AuthContext.Provider value={{ user, profile, loading, signIn, signUp, signOut, isAdmin }}>
       {children}
     </AuthContext.Provider>
   )

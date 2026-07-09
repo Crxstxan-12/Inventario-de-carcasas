@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './hooks/useAuth'
 import Login from './pages/Login'
+import Register from './pages/Register'
 import Layout from './components/Layout'
 import Dashboard from './pages/Dashboard'
 import Inventario from './pages/Inventario'
@@ -38,6 +39,7 @@ function AppRoutes() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={
           <ProtectedRoute>
             <Layout />
